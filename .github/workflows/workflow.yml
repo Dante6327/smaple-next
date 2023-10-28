@@ -32,22 +32,18 @@ jobs:
           # be deployed to ECS.
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-<<<<<<< HEAD
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
-=======
-          echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
           - name: Fill in the new image ID in the Amazon ECS task definition
           id: task-def
           uses: aws-actions/amazon-ecs-render-task-definition@v1
           with:
             task-definition: .ecs/prod/task.json # task파일
-            container-name: sample #이미지 컨테이너 이름
+            container-name: demo #이미지 컨테이너 이름
             image: ${{ steps.build-image.outputs.image }}
-          - name: Deploy Amazon ECS task defignition
+          - name: Deploy Amazon ECS task definition
           uses: aws-actions/amazon-ecs-deploy-task-definition@v1
           with:
             task-definition: ${{ steps.task-def.outputs.task-definition }}
             service: demo-prod #클러스터 서비스 명
             cluster: demo # 클러스터 명
             wait-for-service-stability: true
->>>>>>> f4f3498 (ECS 관련 workflow 추가)
