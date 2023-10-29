@@ -1,9 +1,8 @@
 {
-  "taskDefinitionArn": "arn:aws:ecs:ap-northeast-2:448648424519:task-definition/sample-next-app:5",
+  "taskDefinitionArn": "arn:aws:ecs:ap-northeast-2:448648424519:task-definition/sample-next-app:latest",
   "containerDefinitions": [
     {
       "name": "sample",
-      "image": "448648424519.dkr.ecr.ap-northeast-2.amazonaws.com/sample:10",
       "cpu": 0,
       "portMappings": [
         {

@@ -44,6 +44,6 @@ jobs:
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: sample-service-prod #클러스터 서비스 명
+          service: sample-ecs-service #클러스터 서비스 명
           cluster: sample-cluster # 클러스터 명
           wait-for-service-stability: true
